@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Brew Steps">
+        <div class="slds-card__body_inner">
+            <template if:true={brewSteps}>
+                <lightning-layout multiple-rows="true" pull-to-boundary="small" class="slds-align_absolute-center">
+                    <template for:each={brewSteps} for:item="step">
+                        <lightning-layout-item key={step.Id} class="slds-p-around_x-small">
+                            <div class="step">
+                                <div class="slds-align_absolute-center">{step.Name}</div>
+                                    <div class="slds-border_top">      
+                                    <div class="slds-p-horizontal_x-small">
+                                        <div class="slds-media__body">
+                                            <p class="slds-m-bottom_xx-small">Planned Date: {step.Planned_Date__c}</p>
+                                            <p class="slds-m-bottom_xx-small">Status: {step.Status__c}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </template>
+            <template if:true={error}>
+                <div class="slds-text-color_error">
+                    Please contact the site Administrator!
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

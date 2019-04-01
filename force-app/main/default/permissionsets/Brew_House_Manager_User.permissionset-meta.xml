@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>Brew_House_Manager</application>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <description>User permissions for Brew House Manager App</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Brew House Manager User</label>
+</PermissionSet>

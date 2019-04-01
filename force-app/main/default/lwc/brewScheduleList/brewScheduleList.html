@@ -1,0 +1,41 @@
+<template>
+      <lightning-card title="Brew Schedules">
+         <div class="slds-card__body_inner">
+            <div class="slds-col slds-p-around_medium">
+               <template if:true={brewSchedules.data}>
+                  <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                     <template for:each={brewSchedules.data} for:item="schedule">
+                        <lightning-layout-item key={schedule.Id} size="3" class="slds-p-around_x-small">
+                           <lightning-card class="card">
+                              <div slot="title">{schedule.Name}</div>
+                              <div slot="actions" class="slds-p-horizontal_x-small">
+                                 <lightning-button-menu>
+                                    <lightning-menu-item value="viewSteps" label="View Steps" onclick={handleViewSteps} 
+                                       data-recordid={schedule.Id}></lightning-menu-item>
+                                 </lightning-button-menu>
+                              </div>
+                              <div class="slds-p-horizontal_x-small">
+                                 <div class="slds-media__body">
+                                    <p class="slds-m-bottom_xx-small">Brew Date: {schedule.Brew_Date__c}</p>
+                                    <p class="slds-m-bottom_xx-small">Brew Batch: {schedule.Brew_Batch__r.Name}</p>
+                                 </div>
+                              </div>
+                              <div slot="footer">
+                                 <div class="slds-p-around_xx-small.slds-m-vertical-none">
+                                    <lightning-badge label={schedule.Brew_Batch__r.Style__c}></lightning-badge>
+                                 </div>
+                              </div>
+                           </lightning-card>
+                        </lightning-layout-item>
+                     </template>
+                  </lightning-layout>
+               </template>
+               <template if:true={brewSchedules.error}>
+                  <div class="slds-text-color_error">
+                     Please contact the site Administrator!
+                  </div>
+               </template>
+            </div>
+         </div>
+      </lightning-card>
+</template>

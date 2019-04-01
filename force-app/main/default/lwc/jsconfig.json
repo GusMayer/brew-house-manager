@@ -2,7 +2,17 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "c/brew-schedule-list": [
+                "brewScheduleList/brewScheduleList.js"
+            ],
+            "c/brew-steps-list": [
+                "brewStepsList/brewStepsList.js"
+            ],
+            "c/pubsub": [
+                "pubsub/pubsub.js"
+            ]
+        }
     },
     "include": [
         "**/*",
