@@ -1,8 +1,9 @@
-public with sharing class BrewStepController {
+public class BrewStepController {
     
     @AuraEnabled(Cacheable=true)
-    public static Brew_Step__c[] findBrewStepsByBrewSchedule(Id scheduleId) {
-        return BrewStepService.findBrewStepsByBrewSchedule(scheduleId);
+    public static List<Brew_Step__c> findBrewStepsByBrewSchedule(Id scheduleId) {
+        BrewStepService brewStepService = new BrewStepService();
+        return brewStepService.findBrewStepsByBrewSchedule(scheduleId);
     }
-   
+    
 }

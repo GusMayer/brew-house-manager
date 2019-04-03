@@ -1,29 +1,25 @@
 /* eslint-disable no-console */
 import { LightningElement, track, wire } from 'lwc';
-import { CurrentPageReference } from 'lightning/navigation';
+import { CurrentPageReference, NavigationMixin } from 'lightning/navigation';
 import { registerListener, unregisterAllListeners } from 'c/pubsub';
 import findBrewStepsByBrewSchedule from '@salesforce/apex/BrewStepController.findBrewStepsByBrewSchedule';
-export default class BrewStepsList extends LightningElement {
+export default class BrewStepsList extends NavigationMixin(LightningElement) {
 	
 	@track brewSteps = [];
     @track error;
-	// @wire(findBrewStepsByBrewSchedule, { scheduleId: '$scheduleId' }) brewSteps;
 
 	@wire(CurrentPageReference) pageRef;
 	connectedCallback() {
-		registerListener('viewStepsEvent', this.handleBearListUpdate, this);
+		registerListener('viewStepsEvent', this.handleViewSteps, this);
 	}
 	
 	disconnectedCallback() {
 		unregisterAllListeners(this);
 	}
 	
-	handleBearListUpdate(scheduleId) {
-		console.log("SCHEDULE ID ARRIVED " + scheduleId);
-		
+	handleViewSteps(scheduleId) {
 		findBrewStepsByBrewSchedule({scheduleId})
 			.then(result => {
-				console.log(JSON.stringify(result));
 				this.brewSteps = result;
                 this.error = undefined;
 			})
